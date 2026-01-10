@@ -1,8 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import * as Tone from "tone";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
 import Grid from "@/components/game/Grid";
 import VictoryScreen from "@/components/game/VictoryScreen";
@@ -35,42 +34,8 @@ export default function Home() {
   const [bestTime, setBestTime] = useState<number | null>(null);
   const [bestMoves, setBestMoves] = useState<number | null>(null);
   const [showHint, setShowHint] = useState(false);
-  const [isSoundOn, setIsSoundOn] = useState(true);
-  const [audioContextStarted, setAudioContextStarted] = useState(false);
   
   const puzzleImage = useMemo(() => PlaceHolderImages.find(img => img.id === 'anime-puzzle-1') as ImagePlaceholder, []);
-
-  const slideSound = useRef<Tone.Synth | null>(null);
-  const victorySound = useRef<Tone.MembraneSynth | null>(null);
-
-  const startAudio = async () => {
-    if (audioContextStarted) return;
-    await Tone.start();
-    slideSound.current = new Tone.Synth({
-      oscillator: { type: "sine" },
-      envelope: { attack: 0.005, decay: 0.1, sustain: 0, release: 0.1 },
-    }).toDestination();
-    victorySound.current = new Tone.MembraneSynth({
-      pitchDecay: 0.01,
-      octaves: 6,
-      envelope: { attack: 0.001, decay: 0.5, sustain: 0 },
-    }).toDestination();
-    setAudioContextStarted(true);
-    console.log("Audio context started.");
-  };
-
-  const playSound = (sound: 'slide' | 'victory') => {
-    if (!isSoundOn || !audioContextStarted) return;
-    const now = Tone.now();
-    if (sound === 'slide' && slideSound.current) {
-      slideSound.current.triggerAttackRelease("C5", "8n", now);
-    }
-    if (sound === 'victory' && victorySound.current) {
-      victorySound.current.triggerAttackRelease("C4", "8n", now);
-      victorySound.current.triggerAttackRelease("E4", "8n", now + 0.2);
-      victorySound.current.triggerAttackRelease("G4", "8n", now + 0.4);
-    }
-  };
 
   const resetGame = useCallback(() => {
     const getNeighbors = (index: number) => {
@@ -120,7 +85,6 @@ export default function Home() {
     if (isSolved) {
       setIsSolved(true);
       setIsGameStarted(false);
-      playSound('victory');
       if (bestTime === null || time < bestTime) {
         setBestTime(time);
       }
@@ -128,14 +92,10 @@ export default function Home() {
         setBestMoves(moves);
       }
     }
-  }, [time, moves, bestTime, bestMoves, playSound]);
+  }, [time, moves, bestTime, bestMoves]);
 
   const handleTileClick = (clickedTileValue: number) => {
     if (isSolved || clickedTileValue === 0) return;
-
-    if (!audioContextStarted) {
-      startAudio();
-    }
     
     if (!isGameStarted) {
       setIsGameStarted(true);
@@ -160,7 +120,7 @@ export default function Home() {
 
       setTiles(newTiles);
       setMoves(moves + 1);
-      playSound('slide');
+
       if (typeof window.navigator.vibrate === 'function') {
         window.navigator.vibrate(10);
       }
@@ -185,8 +145,6 @@ export default function Home() {
           onReset={resetGame}
           showHint={showHint}
           onHintToggle={setShowHint}
-          isSoundOn={isSoundOn}
-          onSoundToggle={setIsSoundOn}
         />
       </div>
       
