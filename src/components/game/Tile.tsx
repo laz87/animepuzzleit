@@ -1,4 +1,3 @@
-
 "use client";
 
 type TileProps = {
@@ -44,9 +43,6 @@ const Tile = ({ value, currentIndex, gridSize, imageSrc, onClick }: TileProps) =
         }}
       >
         <div className="absolute inset-0 bg-black/10 group-hover:bg-white/10 transition-colors duration-200"></div>
-        <span className="absolute top-1 left-2 text-lg font-bold text-white opacity-70" style={{ textShadow: '1px 1px 2px black' }}>
-            {value}
-        </span>
       </div>
     </button>
   );
