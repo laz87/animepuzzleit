@@ -15,8 +15,8 @@ const Tile = ({ value, currentIndex, gridSize, imageSrc, onClick }: TileProps) =
   const left = (currentIndex % gridSize) * tileDimension;
   
   const correctIndex = value === 0 ? gridSize * gridSize - 1 : value - 1;
-  const bgLeft = (correctIndex % gridSize) * (100 / (gridSize - 1)) * 100;
-  const bgTop = Math.floor(correctIndex / gridSize) * (100 / (gridSize - 1)) * 100;
+  const bgLeft = (correctIndex % gridSize) * (100 / (gridSize - 1));
+  const bgTop = Math.floor(correctIndex / gridSize) * (100 / (gridSize - 1));
   
   const isEmpty = value === 0;
 
@@ -40,7 +40,7 @@ const Tile = ({ value, currentIndex, gridSize, imageSrc, onClick }: TileProps) =
         style={{
           backgroundImage: `url(${imageSrc})`,
           backgroundSize: `${gridSize * 100}% ${gridSize * 100}%`,
-          backgroundPosition: `-${bgLeft}% -${bgTop}%`,
+          backgroundPosition: `${bgLeft}% ${bgTop}%`,
         }}
       >
         <div className="absolute inset-0 bg-black/10 group-hover:bg-white/10 transition-colors duration-200"></div>
