@@ -81,7 +81,9 @@ export default function Home() {
   }, [isGameStarted, isSolved]);
 
   const checkWinCondition = useCallback((currentTiles: Tile[]) => {
-    const isSolved = currentTiles.every((tile, i) => tile.value === solvedState[i]);
+    const sortedTiles = [...currentTiles].sort((a, b) => a.index - b.index);
+    const isSolved = sortedTiles.every((tile, i) => tile.value === solvedState[i]);
+    
     if (isSolved) {
       setIsSolved(true);
       setIsGameStarted(false);
