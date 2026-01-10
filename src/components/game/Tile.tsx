@@ -1,3 +1,4 @@
+
 "use client";
 
 type TileProps = {
@@ -14,8 +15,8 @@ const Tile = ({ value, currentIndex, gridSize, imageSrc, onClick }: TileProps) =
   const left = (currentIndex % gridSize) * tileDimension;
   
   const correctIndex = value === 0 ? gridSize * gridSize - 1 : value - 1;
-  const bgLeft = (correctIndex % gridSize) * 100;
-  const bgTop = Math.floor(correctIndex / gridSize) * 100;
+  const bgLeft = (correctIndex % gridSize) * (100 / (gridSize - 1)) * 100;
+  const bgTop = Math.floor(correctIndex / gridSize) * (100 / (gridSize - 1)) * 100;
   
   const isEmpty = value === 0;
 
