@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  
+  // ✅ REMOVED eslint config - move it to .eslintrc.json instead
+  
   images: {
     remotePatterns: [
       {
@@ -36,6 +36,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  
+  // Add this to fix the cross-origin warning
+  allowedDevOrigins: [
+    '9002-firebase-studio-1768070813596.cluster-ikslh4rdsnbqsvu5nw3v4dqjj2.cloudworkstations.dev'
+  ],
 };
 
 export default nextConfig;
