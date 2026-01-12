@@ -5,6 +5,24 @@
       "description": "An anime character for the sliding puzzle.",
       "imageUrl": "https://images.unsplash.com/photo-1633307458354-292dd679a763?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhbmltZSUyMGdpcmx8ZW58MHx8fHwxNzY4MDA4NjA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "anime girl"
+    },
+    {
+      "id": "fantasy-world-2",
+      "description": "A vibrant fantasy world.",
+      "imageUrl": "https://images.unsplash.com/photo-1548445929-4f60a497f851?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmYW50YXN5JTIwd29ybGR8ZW58MHx8fHwxNzY4MTQ1NDYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fantasy world"
+    },
+    {
+      "id": "cyberpunk-city-3",
+      "description": "A neon-lit cyberpunk city.",
+      "imageUrl": "https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBjaXR5fGVufDB8fHx8MTc2ODE3OTAwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cyberpunk city"
+    },
+    {
+      "id": "nature-landscape-4",
+      "description": "A serene natural landscape.",
+      "imageUrl": "https://images.unsplash.com/39/wdXqHcTwSTmLuKOGz92L_Landscape.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxuYXR1cmUlMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzY4MTUwNjc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "nature landscape"
     }
   ]
 }

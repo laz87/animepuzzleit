@@ -9,6 +9,7 @@ import Header from "@/components/game/Header";
 import Stats from "@/components/game/Stats";
 import GameControls from "@/components/game/GameControls";
 import Hint from "@/components/game/Hint";
+import PuzzleSelector from "@/components/game/PuzzleSelector";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { ImagePlaceholder } from "@/lib/placeholder-images";
 import { formatTime } from "@/lib/utils";
@@ -34,8 +35,12 @@ export default function Home() {
   const [bestTime, setBestTime] = useState<number | null>(null);
   const [bestMoves, setBestMoves] = useState<number | null>(null);
   const [showHint, setShowHint] = useState(false);
+  const [selectedPuzzleId, setSelectedPuzzleId] = useState<string>(PlaceHolderImages[0].id);
   
-  const puzzleImage = useMemo(() => PlaceHolderImages.find(img => img.id === 'anime-puzzle-1') as ImagePlaceholder, []);
+  const puzzleImage = useMemo(() => 
+    PlaceHolderImages.find(img => img.id === selectedPuzzleId) as ImagePlaceholder, 
+    [selectedPuzzleId]
+  );
 
   const resetGame = useCallback(() => {
     const getNeighbors = (index: number) => {
@@ -68,7 +73,7 @@ export default function Home() {
 
   useEffect(() => {
     resetGame();
-  }, [resetGame]);
+  }, [resetGame, selectedPuzzleId]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -137,6 +142,12 @@ export default function Home() {
 
         <Stats moves={moves} time={time} bestMoves={bestMoves} bestTime={bestTime} />
         
+        <PuzzleSelector 
+          puzzles={PlaceHolderImages}
+          selectedPuzzleId={selectedPuzzleId}
+          onPuzzleChange={setSelectedPuzzleId}
+        />
+
         <div className="relative w-full aspect-square mb-4">
            <Grid tiles={tiles} onTileClick={handleTileClick} gridSize={GRID_SIZE} imageSrc={puzzleImage.imageUrl} />
         </div>
